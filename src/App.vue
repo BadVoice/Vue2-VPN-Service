@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Authorization msg="Здесь будет страница авторизации"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Authorization from "@/components/Authorization";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Authorization
   }
 }
 </script>
