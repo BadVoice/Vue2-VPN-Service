@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-      <p> Ep </p>
+      <UserProfile />
   </div>
 </template>
 
 <script>
+import UserProfile from '../src/components/dashboard/UserProfile'
 
 export default {
   name: 'App',
   components: {
+    UserProfile
   }
 }
 </script>
