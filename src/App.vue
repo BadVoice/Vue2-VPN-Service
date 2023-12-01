@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-      <UserProfile />
+    <Login />
+      <!-- <UserProfile /> -->
   </div>
 </template>
 
 <script>
 import UserProfile from '../src/components/dashboard/UserProfile'
+import Login from '../src/components/auth/Login'
 
 export default {
   name: 'App',
   components: {
-    UserProfile
+    UserProfile,
+    Login
   }
 }
 </script>
