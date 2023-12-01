@@ -1,4 +1,4 @@
-import axios from 'axios';
+import profileService from "@/services/profileService";
 
 const state = {
   userProfile: null
@@ -11,11 +11,10 @@ const getters = {
 const actions = {
   async GET_USER_PROFILE_BY_ID({ commit }, userId) {
     try {
-      const userProfileData = await axios.get(`http://185.125.201.105:5000/users/profiles/${userId}`);
-      const userProfile = userProfileData.data;
+      const userProfile = await profileService.getUserProfileById(userId)
       commit('SET_USER_PROFILE', userProfile);
     } catch (error) {
-      // Обработка ошибок, например, показ сообщения об ошибке пользователю
+      console.error('Error to fetch user profile:', error.message);
     }
   }
 };
@@ -26,7 +25,7 @@ const mutations = {
   }
 };
 
-export default {  // Добавляем экспорт по умолчанию для вашего модуля Vuex
+export default {
   namespaced: true,
   state,
   getters,
