@@ -3,22 +3,30 @@ import axios from "axios";
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: null,
+  userId: ''
 };
 
 const getters = {
   token: state => state.token,
-  userProfile: state => state.userProfile
+  userProfile: state => state.userProfile,
+  userId: state => state.userId
 };
 
 const mutations = {
   setToken(state, token) {
     state.token = token;
   },
-  setUserProfile(state, userProfile) {
-    state.userProfile = userProfile;
+  setUserId(state, userId) {
+    state.userId = userId;
+  },
+  setUserProfile(state, updatedFields) {
+    state.userProfile = updatedFields;
   },
   clearToken(state) {
     state.token = null;
+  },
+  updateUserProfile(state, updatedFields) {
+    state.userProfile = Object.assign({}, state.userProfile, updatedFields);
   }
 };
 
@@ -57,11 +65,34 @@ const actions = {
         }
       });
 
-      const userProfile = response.data.profile;
-      commit('setUserProfile', userProfile);
+      if (response.status === 200) {
+        commit('setUserProfile', response.data.profile);
+        commit('setUserId', userId);
+      } else {
+        console.error('Failed to retrieve user profile');
+      }
 
     } catch (error) {
       console.error("Error while getting user information:", error);
+    }
+  },
+
+  async updateUserProfile({state, commit }, updatedFields) {
+    try {
+      const response = await axios.patch(`http://185.125.201.105:5000/users/profiles/${state.userId}`, updatedFields, {
+        headers: {
+          Authorization: `Bearer ${state.token}`
+        }
+      });
+
+      if (response.status === 200) {
+        console.log(response.data)
+        commit('updateUserProfile', response.data.profile);
+      } else {
+        console.error('Failed to update user profile');
+      }
+    } catch (error) {
+      console.error('Error updating user profile:', error);
     }
   },
 
