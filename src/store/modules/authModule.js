@@ -59,7 +59,6 @@ const actions = {
       });
 
       const userProfile = response.data.profile;
-      console.log(userProfile)
       commit('setUserProfile', userProfile);
 
     } catch (error) {
