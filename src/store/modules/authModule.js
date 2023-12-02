@@ -1,4 +1,3 @@
-import axios from "axios";
 import { updateUserProfileService } from "@/services/user/updateUserProfileService";
 import { getUserProfileService } from "@/services/user/userProfileService";
 import { loginUserService } from "@/services/user/loginUserService";
@@ -59,7 +58,6 @@ const actions = {
   async updateUserProfile({state, commit }, updatedFields) {
     const updatedProfile = await updateUserProfileService(state.userId, state.token, updatedFields);
     if (updatedProfile) {
-      console.log(updatedProfile);
       commit('updateUserProfile', updatedProfile);
     }
   },
