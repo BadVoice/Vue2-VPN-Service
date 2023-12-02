@@ -32,8 +32,7 @@ const actions = {
       const token = response.data.access_token;
       commit('setToken', token);
       localStorage.setItem('token', token);
-      await dispatch('fetchCurrentUser');
-
+      await dispatch('userProfile');
     } catch (error) {
       console.error("Login error:", error);
     }
