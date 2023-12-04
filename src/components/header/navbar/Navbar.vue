@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <LoginBtn/>
-    <ProfileBtn v-if=""/>
+    <ProfileBtn/>
   </div>
 </template>
 <script>

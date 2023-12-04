@@ -1,6 +1,6 @@
 <template>
   <div class="btn">
-    <router-link to="/ProfilePage">Profile</router-link>
+    <router-link to="/userProfile">Profile</router-link>
 
   </div>
 </template>
