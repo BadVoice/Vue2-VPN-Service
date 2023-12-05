@@ -10,10 +10,6 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      component: Home
-    },
-    {
       path: '/userProfile',
       name: 'userProfile',
       component: ProfileView
