@@ -1,18 +1,24 @@
 <template>
   <div class="navbar">
-    <LoginBtn/>
-    <ProfileBtn/>
+    <LoginBtn v-if="!userProfile"/>
+    <ProfileBtn v-if="userProfile"/>
   </div>
 </template>
 <script>
 import LoginBtn from "@/components/header/navbar/buttons/LoginBtn";
 import ProfileBtn from "@/components/header/navbar/buttons/ProfileBtn";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'Navbar',
   components: {
     LoginBtn,
     ProfileBtn
+  },
+  computed: {
+    ...mapGetters('authModule', [
+      'userProfile'
+    ]),
   }
 }
 </script>
