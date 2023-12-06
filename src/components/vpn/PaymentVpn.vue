@@ -11,19 +11,33 @@
   export default {
     data() {
       return {
-        amount: '100',  //static data for test
+        amount: '90',  //static data for test
         currency: 'RUB' //static data for test
       }
     },
-    methods: {
+  methods: {
     async initiatePayment() {
-      return await this.$store.dispatch('paymentModule/createPayment', {
+    try {
+      const userId = this.$store.state.authModule.userId;
+      if (!userId) {
+        throw new Error("User not authenticated.");
+      }
+      const paymentResponse = await this.$store.dispatch('paymentModule/createPayment', {
         amount: this.amount,
         currency: this.currency
-      })
-      .then(response => console.log(response))
-      .catch(error => console.error(error));
+      });
+      this.savePayment(userId, paymentResponse);
+    } catch (error) {
+      console.error(error);
     }
+  },
+  async savePayment(userId, paymentData) {
+    try {
+      await this.$store.dispatch('paymentModule/recordPayment', { userId, paymentData });
+    } catch (error) {
+      console.error(error);
+    }
+  }
   }
 }
   </script>
