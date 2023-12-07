@@ -40,7 +40,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('http://localhost:5001/create-payment', paymentData);
+        const response = await axios.post(process.env.GENERATE_PAY, paymentData);
         
         console.log(response.data.id)
         window.location.href = response.data.confirmation.confirmation_url; 
@@ -53,7 +53,7 @@ export default {
 
     async recordPayment({ commit }, { userId, paymentData }) {
         try {
-          const response = await axios.post('http://localhost:5001/record-payment', {
+          const response = await axios.post(process.env.COMMIT_PAY, {
             userId,
             paymentData: {
               paymentId: paymentData.id,
@@ -70,7 +70,8 @@ export default {
 
     async checkPaymentStatus({ state, commit }) {
         try {
-          const response = await axios.get(`http://localhost:5001/payments/${state.paymentId}/status`);
+          const payId = state.paymentId
+          const response = await axios.get(`${process.env.CHECK_PAY}${payId}/status`);
       
           commit('SET_PAYMENT_STATUS', response.data.status);
           

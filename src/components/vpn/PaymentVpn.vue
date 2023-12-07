@@ -11,7 +11,7 @@
   export default {
     data() {
       return {
-        amount: '90',  //static data for test
+        amount: '77',  //static data for test
         currency: 'RUB' //static data for test
       }
     },

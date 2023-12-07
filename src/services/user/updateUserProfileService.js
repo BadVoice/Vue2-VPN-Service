@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const updateUserProfileService = async (userId, token, updatedFields) => {
   try {
-    const response = await axios.patch(`http://185.125.201.105:5000/users/profiles/${userId}`, updatedFields, {
+    const response = await axios.patch(`${process.env.UPDATE_PROFILE}${userId}`, updatedFields, {
       headers: {
         Authorization: `Bearer ${token}`
       }
