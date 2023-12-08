@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import axios from 'axios'
 
-const SOCKET_URL = 'http://localhost:5001';
+const SOCKET_URL = 'http://185.125.201.105:5000';
 
 export default {
     namespaced: true,
