@@ -11,33 +11,57 @@
   export default {
     data() {
       return {
-        amount: '77',  //static data for test
+        amount: '999',  //static data for test
         currency: 'RUB' //static data for test
       }
     },
+  created() {
+    this.$store.dispatch('socketModule/initWebSocket');
+  },
+
+  beforeDestroy() {
+    this.$store.dispatch('socketModule/disconnectWebSocket');
+  },
   methods: {
     async initiatePayment() {
-    try {
       const userId = this.$store.state.authModule.userId;
-      if (!userId) {
-        throw new Error("User not authenticated.");
-      }
-      const paymentResponse = await this.$store.dispatch('paymentModule/createPayment', {
+    if (!userId) {
+      throw new Error("User not authenticated.");
+    }
+
+    try {
+      const paymentData = await this.$store.dispatch('paymentModule/createPayment', {
         amount: this.amount,
         currency: this.currency
       });
-      this.savePayment(userId, paymentResponse);
+
+      // Предположим, что paymentData содержит необходимые данные о платеже
+      if (paymentData && paymentData.id) {
+        await this.savePayment(userId, paymentData);
+      }
+    } catch (error) {
+      console.error('Error during payment initiation:', error);
+    }
+
+      return paymentResponse
+  },
+  savePayment(userId, paymentData) {
+    try {
+      this.$store.dispatch('paymentModule/recordPayment', { userId, paymentData });
     } catch (error) {
       console.error(error);
+    }
+  }},
+  computed: {
+    isReconnectError() {
+      return this.$store.state.socketModule.reconnectError;
     }
   },
-  async savePayment(userId, paymentData) {
-    try {
-      await this.$store.dispatch('paymentModule/recordPayment', { userId, paymentData });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  watch: {
+    isReconnectError() {
+    console.log('reconnect errror'); 
+    return this.$store.state.socketModule.reconnectError;
+  },
   }
 }
   </script>
