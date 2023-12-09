@@ -1,13 +1,13 @@
 <template>
   <div class="navbar">
-    <LoginBtn/>
-    <ProfileBtn/>
-    <p>{{ this.token }}</p>
+    <LoginBtn v-if="!userProfile"/>
+    <ProfileBtn v-if="userProfile"/>
   </div>
 </template>
 <script>
 import LoginBtn from "@/components/header/navbar/buttons/LoginBtn";
 import ProfileBtn from "@/components/header/navbar/buttons/ProfileBtn";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'Navbar',
@@ -20,7 +20,6 @@ export default {
       token: $store.state.getters.token
     }
   }
-
 }
 </script>
 <style lang="scss" scoped>
