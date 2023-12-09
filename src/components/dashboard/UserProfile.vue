@@ -1,5 +1,6 @@
 <template>
   <div>
+    <PaymentVpn />
     <h2>User Profile</h2>
     <p>Имя: {{ userFirstName }}</p>
     <p>Фамилия: {{ userLastName }}</p>
@@ -15,12 +16,18 @@
     </div>
     <button @click="updateProfile">Сохранить</button>
   </div>
+
+ 
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import PaymentVpn from '../vpn/PaymentVpn'
 
 export default {
+  components: {
+    PaymentVpn
+  },
   data() {
     return {
       newFirstName: '',

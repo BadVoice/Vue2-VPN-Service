@@ -2,6 +2,7 @@
   <div class="navbar">
     <LoginBtn/>
     <ProfileBtn/>
+    <p>{{ this.token }}</p>
   </div>
 </template>
 <script>
@@ -13,7 +14,13 @@ export default {
   components: {
     LoginBtn,
     ProfileBtn
+  },
+  data() {
+    return {
+      token: $store.state.getters.token
+    }
   }
+
 }
 </script>
 <style lang="scss" scoped>

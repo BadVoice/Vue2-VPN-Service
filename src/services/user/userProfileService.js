@@ -8,7 +8,7 @@ export const getUserProfileService = async (token) => {
 
     const userId = decodedToken.id;
 
-    const response = await axios.get(`http://185.125.201.105:5000/users/profiles/${userId}`, {
+    const response = await axios.get(`${process.env.GET_PROFILE}${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

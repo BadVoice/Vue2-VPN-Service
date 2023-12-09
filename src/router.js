@@ -11,7 +11,7 @@ const router = new Router({
     {
       path: '/userProfile',
       name: 'userProfile',
-      component: ProfileView
+      component: ProfileView   
     },
     {
       path: '/loginPage',
@@ -20,5 +20,6 @@ const router = new Router({
     }
   ]
 });
+
 
 export default router;

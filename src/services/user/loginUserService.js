@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const loginUserService = async (email, password) => {
   try {
-    const response = await axios.post('http://185.125.201.105:5000/users/login', {
+    const response = await axios.post(process.env.LOGIN, {
       email,
       password
     });
