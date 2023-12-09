@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
+  
+  <navbar v-if="shouldDisplayNavbar"></navbar>
     <main>
       <router-view/>
     </main>
@@ -10,12 +11,20 @@
 <script>
 
 import Header from "@/components/header/Header";
+import Navbar from "./components/header/navbar/Navbar.vue";
 
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    navbar: Navbar
+  },
+  computed: {
+    shouldDisplayNavbar() {
+      const excludedRoutes = ['/loginPage', '/register'];
+      return !excludedRoutes.includes(this.$route.path);
+    }
   }
 }
 </script>

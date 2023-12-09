@@ -9,12 +9,12 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/userProfile',
-      name: 'userProfile',
+      path: '/profile',
+      name: 'profile',
       component: ProfileView   
     },
     {
-      path: '/loginPage',
+      path: '/login',
       name: 'login',
       component: LoginView
     }

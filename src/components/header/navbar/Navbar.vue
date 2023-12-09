@@ -1,23 +1,22 @@
 <template>
   <div class="navbar">
-    <LoginBtn v-if="!userProfile"/>
-    <ProfileBtn v-if="userProfile"/>
+    <LoginBtn/>
+    <ProfileBtn/>
   </div>
 </template>
 <script>
 import LoginBtn from "@/components/header/navbar/buttons/LoginBtn";
 import ProfileBtn from "@/components/header/navbar/buttons/ProfileBtn";
-import {mapGetters} from "vuex";
 
 export default {
-  name: 'Navbar',
+  name: 'navbar',
   components: {
     LoginBtn,
     ProfileBtn
   },
   data() {
     return {
-      token: $store.state.getters.token
+      
     }
   }
 }

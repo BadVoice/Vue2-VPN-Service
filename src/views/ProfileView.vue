@@ -8,7 +8,7 @@
   import UserProfile from '../components/dashboard/UserProfile.vue'
   
   export default {
-    name: 'userProfile',
+    name: 'profile',
     components: {
       UserProfile,
     }

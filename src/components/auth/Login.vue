@@ -26,7 +26,7 @@
        async login() {
          await this.$store.dispatch('authModule/login', { email: this.email, password: this.password });
          
-         this.$router.push({ name: 'userProfile' });
+         this.$router.push({ name: 'profile' });
        }
      }
   }
