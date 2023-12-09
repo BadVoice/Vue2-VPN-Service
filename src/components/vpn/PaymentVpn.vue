@@ -35,15 +35,12 @@
         currency: this.currency
       });
 
-      // Предположим, что paymentData содержит необходимые данные о платеже
       if (paymentData && paymentData.id) {
         await this.savePayment(userId, paymentData);
       }
     } catch (error) {
       console.error('Error during payment initiation:', error);
     }
-
-      return paymentResponse
   },
   savePayment(userId, paymentData) {
     try {
