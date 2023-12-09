@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     shouldDisplayNavbar() {
-      const excludedRoutes = ['/loginPage', '/register'];
+      const excludedRoutes = ['/login', '/register'];
       return !excludedRoutes.includes(this.$route.path);
     }
   }
