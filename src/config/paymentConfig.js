@@ -1,5 +1,5 @@
 export default {
-    returnUrl: 'http://localhost:8080/profile',
+    returnUrl: 'https://tvoyvpn.com/success',
     paymentMethod: "bank_card",
     capture: true,
     description: "Описание платежа"
