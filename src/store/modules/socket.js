@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import axios from 'axios'
 
-const SOCKET_URL = 'http://185.125.201.105:5000';
+const SOCKET_URL = 'https://api.tvoyvpn.com';
 
 export default {
     namespaced: true,
