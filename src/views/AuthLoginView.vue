@@ -1,21 +1,21 @@
 <template>
     <div id="div">
-        <Login />
+        <AuthLogin />
     </div>
-  </template>
+</template>
   
-  <script>
-  import Login from '../components/auth/Login.vue';
+<script>
+import AuthLogin from '../components/auth/AuthLogin.vue';
   
-  export default {
+export default {
     name: 'login',
     components: {
-    Login
+        AuthLogin
+    }
 }
-  }
-  </script>
+</script>
   
-  <style lang="scss">
+<style lang="scss">
   #div {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -24,5 +24,5 @@
     color: #2c3e50;
     margin-top: 60px;
   }
-  </style>
+</style>
   

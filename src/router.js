@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import ProfileView from './views/ProfileView.vue'
-import LoginView from './views/LoginWiev.vue'
+import DashboardView from './views/DashboardView.vue'
+import AuthLoginView from './views/AuthLoginView.vue'
 
 Vue.use(Router);
 
@@ -11,15 +11,14 @@ const router = new Router({
     {
       path: '/profile',
       name: 'profile',
-      component: ProfileView   
+      component: DashboardView   
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: AuthLoginView
     }
   ]
 });
-
 
 export default router;

@@ -1,31 +1,32 @@
 <template>
   <div id="app">
-  
-  <navbar v-if="shouldDisplayNavbar"></navbar>
-    <main>
-      <router-view/>
-    </main>
+  <Navbar v-if="shouldDisplayNavbar" />
+  <VpnPaymentCard v-if="isHomePage" />
+
+  <router-view/>
   </div>
 </template>
 
 <script>
-
-import Header from "@/components/header/Header";
-import Navbar from "./components/header/navbar/Navbar.vue";
-
+import Navbar from "./components/navbar/Navbar.vue";
+import VpnPaymentCard from './components/vpn-payment/VpnPaymentCard'
 
 export default {
   name: 'App',
   components: {
-    Header,
-    navbar: Navbar
+    VpnPaymentCard,
+    Navbar
   },
   computed: {
     shouldDisplayNavbar() {
       const excludedRoutes = ['/login', '/register'];
       return !excludedRoutes.includes(this.$route.path);
+    },
+    isHomePage() {
+      return this.$route.path === '/';
     }
-  }
+  },
+  
 }
 </script>
 

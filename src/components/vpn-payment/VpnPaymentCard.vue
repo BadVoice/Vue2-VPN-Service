@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Впн</h1>
-      <h3>Регони: Нидерланды</h3>
+      <h3>Регион: Нидерланды</h3>
       <h3>1 месяц</h3>
       <button @click="initiatePayment">Купить</button>
     </div>
@@ -9,6 +9,7 @@
   
   <script>
   export default {
+    name: 'vpnPaymentCard',
     data() {
       return {
         amount: '999',  //static data for test
@@ -26,6 +27,7 @@
     async initiatePayment() {
       const userId = this.$store.state.authModule.userId;
     if (!userId) {
+        console.log(userId)
       throw new Error("User not authenticated.");
     }
 

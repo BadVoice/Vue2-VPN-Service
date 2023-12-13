@@ -5,7 +5,7 @@ import { loginUserService } from "@/services/user/loginUserService";
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: null,
-  userId: ''
+  userId: localStorage.getItem('userId') || null
 };
 
 const getters = {
@@ -38,6 +38,14 @@ const actions = {
     if (token) {
       commit('setToken', token);
       localStorage.setItem('token', token);
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const decodedToken = JSON.parse(atob(base64));
+
+      const userId = decodedToken.id;
+      commit('setUserId', userId);
+      localStorage.setItem('userId', userId);
+
       await dispatch('userProfile');
     }
   },
@@ -51,7 +59,6 @@ const actions = {
     const result = await getUserProfileService(state.token);
     if (result) {
       commit('setUserProfile', result.profile);
-      commit('setUserId', result.userId);
     }
   },
 

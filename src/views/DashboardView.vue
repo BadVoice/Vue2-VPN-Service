@@ -1,16 +1,16 @@
 <template>
     <div id="div">
-        <UserProfile />
+        <DashboardProfile />
     </div>
   </template>
   
   <script>
-  import UserProfile from '../components/dashboard/UserProfile.vue'
+  import DashboardProfile from '../components/dashboard/DashboardProfile.vue'
   
   export default {
     name: 'profile',
     components: {
-      UserProfile,
+      DashboardProfile,
     }
   }
   </script>
