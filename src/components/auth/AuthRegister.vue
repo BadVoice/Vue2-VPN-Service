@@ -4,6 +4,10 @@
       <h2>Регистрация</h2>
       <form @submit.prevent="register">
         <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" v-model="email" required>
+        </div>
+        <div>
           <label for="firstName">Имя</label>
           <input type="text" id="firstName" v-model="firstName" required>
         </div>
@@ -12,20 +16,8 @@
           <input type="text" id="lastName" v-model="lastName" required>
         </div>
         <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" required>
-        </div>
-        <div>
-          <label for="imgUrl">URL изображения</label>
-          <input type="text" id="imgUrl" v-model="imgUrl">
-        </div>
-        <div>
           <label for="password">Пароль</label>
           <input type="password" id="password" v-model="password" required>
-        </div>
-        <div>
-          <label for="repeat_password">Повторите пароль</label>
-          <input type="password" id="repeat_password" v-model="repeatPassword" required>
         </div>
         <button class="btn" type="submit">Зарегистрироваться</button>
       </form>
@@ -37,18 +29,16 @@
     name: 'authRegister',
     data() {
       return {
+        email: '',
         firstName: '',
         lastName: '',
-        email: '',
-        imgUrl: '',
-        password: '',
-        repeatPassword: ''
+        password: ''
       };
     },
     methods: {
       register() {
-        if (this.password !== this.repeatPassword) {
-          alert('Пароли не совпадают!');
+        if (this.password === '') {
+          alert('Введите пароль!');
           return;
         } else {
 
