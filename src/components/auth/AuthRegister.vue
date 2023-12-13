@@ -25,6 +25,7 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'authRegister',
     data() {
@@ -35,28 +36,38 @@
         password: ''
       };
     },
-    methods: {
-      register() {
-        if (this.password === '') {
-          alert('Введите пароль!');
-          return;
-        } else {
 
-        }
-  
-        // Здесь будет логика отправки данные формы на сервер для регистрации
+    methods: {
+        async register() {
+            if (this.password === '') {
+                alert('Введите пароль!');
+                return;
+            }
+            try {
+                const response = await axios.post('https://api.tvoyvpn.com/api/users/register', {
+                    email: this.email,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    password: this.password
+                });
+                debugger
+                console.log(response);
   
         // Очистить поля формы после регистрации
-        this.firstName = '';
-        this.lastName = '';
-        this.email = '';
-        this.imgUrl = '';
-        this.password = '';
-        this.repeatPassword = '';
+                this.email = '';
+                this.firstName = '';
+                this.lastName = '';
+                this.password = '';
+
   
-        alert('Регистрация успешна!');
-      }
+            alert('Регистрация успешна!');
+            console.log(response);
+        } catch (error) {
+            alert('Ошибка при регистрации!');
+            console.error(error);
+        }
     }
+}
   };
   </script>
 
