@@ -44,10 +44,6 @@ export default {
         lastName: this.lastName,
         password: this.password,
       });
-      this.email = "";
-      this.firstName = "";
-      this.lastName = "";
-      this.password = "";
     },
   },
 };

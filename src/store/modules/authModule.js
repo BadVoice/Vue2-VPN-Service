@@ -50,15 +50,14 @@ const mutations = {
 };
 
 const actions = {
-async register({ commit }, {email, firstName, lastName, password}) {
+async register({ commit }, {email, firstName, lastName, password, router}) {
   try {
     const user = await registerUserService(email, firstName, lastName, password);
-    console.log(user);
-
-    commit('clearUser');
-
-    console.log('Регистрация успешна!');
-    console.log(user);
+    if(user) {
+      router.push('login')
+      commit('setUser', user);
+      console.log('Success!');
+    }  
   } catch (error) {
     console.log('Ошибка при регистрации!');
     console.error(error);
