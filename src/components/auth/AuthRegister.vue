@@ -54,9 +54,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/**************************************************/
-/***            TEMPORARY STYLES               ***/
-/*************************************************/
 
 div {
   display: flex;

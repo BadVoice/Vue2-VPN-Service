@@ -2,20 +2,15 @@ import { updateUserProfileService } from "@/services/user/updateUserProfileServi
 import { getUserProfileService } from "@/services/user/userProfileService";
 import { loginUserService } from "@/services/user/loginUserService";
 import { registerUserService } from "@/services/user/registerUserService";
-// import axios from 'axios';
 
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: null,
   userId: localStorage.getItem('userId') || null,
-
- /*****************************************************/
   email: '',
   firstName: '',
   lastName: '',
   password: ''
- /*****************************************************/
-
 };
 
 const getters = {
@@ -40,7 +35,6 @@ const mutations = {
   updateUserProfile(state, updatedFields) {
     state.userProfile = Object.assign({}, state.userProfile, updatedFields);
   },
-/********************************************************/
   setUser(state, user) {
     state.email = user.email;
     state.firstName = user.firstName;
@@ -53,14 +47,9 @@ const mutations = {
     state.lastName = '';
     state.password = '';
   }
-/*******************************************************/
-
 };
 
 const actions = {
-
-/*******************************************************/
-  
 async register({ commit }, {email, firstName, lastName, password}) {
   try {
     const user = await registerUserService(email, firstName, lastName, password);
@@ -68,15 +57,13 @@ async register({ commit }, {email, firstName, lastName, password}) {
 
     commit('clearUser');
 
-    alert('Регистрация успешна!');
+    console.log('Регистрация успешна!');
     console.log(user);
   } catch (error) {
-    alert('Ошибка при регистрации!');
+    console.log('Ошибка при регистрации!');
     console.error(error);
   }
 },
-
-/*******************************************************/
 
   async login({ commit, dispatch }, { email, password }) {
     const token = await loginUserService(email, password);
