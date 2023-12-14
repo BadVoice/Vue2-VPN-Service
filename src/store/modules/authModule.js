@@ -1,11 +1,20 @@
 import { updateUserProfileService } from "@/services/user/updateUserProfileService";
 import { getUserProfileService } from "@/services/user/userProfileService";
 import { loginUserService } from "@/services/user/loginUserService";
+import axios from 'axios';
 
 const state = {
   token: localStorage.getItem('token') || null,
   userProfile: null,
-  userId: localStorage.getItem('userId') || null
+  userId: localStorage.getItem('userId') || null,
+
+ /*****************************************************/
+  email: '',
+  firstName: '',
+  lastName: '',
+  password: ''
+ /*****************************************************/
+
 };
 
 const getters = {
@@ -29,10 +38,49 @@ const mutations = {
   },
   updateUserProfile(state, updatedFields) {
     state.userProfile = Object.assign({}, state.userProfile, updatedFields);
+  },
+/********************************************************/
+  setUser(state, user) {
+    state.email = user.email;
+    state.firstName = user.firstName;
+    state.lastName = user.lastName;
+    state.password = user.password;
+  },
+  clearUser(state) {
+    state.email = '';
+    state.firstName = '';
+    state.lastName = '';
+    state.password = '';
   }
+/*******************************************************/
+
 };
 
 const actions = {
+
+/*******************************************************/
+  
+async register({ commit }, userData) {
+  if (userData.password === '') {
+    alert('Введите пароль!');
+    return;
+  }
+  try {
+    const response = await axios.post('https://api.tvoyvpn.com/api/users/register', userData);
+    console.log(response);
+
+    commit('clearUser');
+
+    alert('Регистрация успешна!');
+    console.log(response);
+  } catch (error) {
+    alert('Ошибка при регистрации!');
+    console.error(error);
+  }
+},
+
+/*******************************************************/
+
   async login({ commit, dispatch }, { email, password }) {
     const token = await loginUserService(email, password);
     if (token) {
