@@ -7,10 +7,6 @@ const state = {
   token: localStorage.getItem('token') || null,
   userProfile: null,
   userId: localStorage.getItem('userId') || null,
-  email: '',
-  firstName: '',
-  lastName: '',
-  password: ''
 };
 
 const getters = {
@@ -35,18 +31,6 @@ const mutations = {
   updateUserProfile(state, updatedFields) {
     state.userProfile = Object.assign({}, state.userProfile, updatedFields);
   },
-  setUser(state, user) {
-    state.email = user.email;
-    state.firstName = user.firstName;
-    state.lastName = user.lastName;
-    state.password = user.password;
-  },
-  clearUser(state) {
-    state.email = '';
-    state.firstName = '';
-    state.lastName = '';
-    state.password = '';
-  }
 };
 
 const actions = {
@@ -54,12 +38,12 @@ async register({ commit }, {email, firstName, lastName, password, router}) {
   try {
     const user = await registerUserService(email, firstName, lastName, password);
     if(user) {
-      router.push('login')
-      commit('setUser', user);
-      console.log('Success!');
+      router.push('/login')
+      console.log('Registration completed successfully!');
+      console.log(user);
     }  
   } catch (error) {
-    console.log('Ошибка при регистрации!');
+    console.log('Error during registration!');
     console.error(error);
   }
 },
