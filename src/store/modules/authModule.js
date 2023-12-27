@@ -34,9 +34,9 @@ const mutations = {
 };
 
 const actions = {
-async register({ commit }, {email, firstName, lastName, password, router}) {
+async register({ commit }, {email, router}) {
   try {
-    const user = await registerUserService(email, firstName, lastName, password);
+    const user = await registerUserService(email);
     if(user) {
       router.push('/login')
       console.log('Registration completed successfully!');

@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-export const registerUserService = async (email, firstName, lastName, password) => {
+export const registerUserService = async (email) => {
   try {
     const response = await axios.post(process.env.REGISTER, {
-      email,
-      firstName,
-      lastName,
-      password
+      email
     });
 
     if(response.status !== 201) {
